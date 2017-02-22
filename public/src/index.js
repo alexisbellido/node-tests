@@ -9,25 +9,6 @@ import StorePicker from './components/StorePicker';
 import App from './components/App';
 import NotFound from './components/NotFound';
 
-// const Root = () => {
-//   return (
-//     <BrowserRouter>
-//       <Match exactly pattern="/" component={StorePicker} />
-//     </BrowserRouter>
-//   )
-// }
-
-// <Match pattern="/store/:storeId" component={App} />
-// <Miss component={NotFound} />
-
-// <Route path="/store/:storeId" component={StorePicker} />
-// <Route path="/" component={App} />
-
-// render(<StorePicker/>, document.querySelector('#main'));
-// render(<App/>, document.querySelector('#main'));
-
-// render(<Root/>, document.querySelector('#main'));
-
 const Root = () => {
   return (
     <BrowserRouter>
