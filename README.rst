@@ -25,6 +25,15 @@ And then you can put your files in public in the host and it will be served from
 
   ``http://127.0.0.1:8888/test.html``
 
+For using as daemon with React Create App, expose port 3000:
+
+  ``docker run --network=zinibu -it -d --rm -p 3000:3000 --name node3 -v "$PWD":/usr/src/app -w /usr/src/app my-nodejs-app``
+  ``docker exec -it node3 /bin/bash``
+
+And then browse to:
+
+  ``http://127.0.0.1:3000/``
+
 
 Some npm commands
 ==================================
