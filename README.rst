@@ -24,3 +24,15 @@ Once in the container:
 And then you can put your files in public in the host and it will be served from the container, for example, if you create a test.html in public you can visit it at:
 
   ``http://127.0.0.1:8888/test.html``
+
+
+Some npm commands
+==================================
+
+If you are only interested in the packages installed globally without the full TREE then:
+
+  ``npm -g ls --depth=0``
+
+or locally:
+
+  ``npm ls --depth=0``
