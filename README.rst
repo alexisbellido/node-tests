@@ -1,6 +1,8 @@
 Running Node.js and Javascript with Docker
 =============================================================================
 
+This is based on the official Node.js image: https://hub.docker.com/_/node/
+
 Build from my Dockerfile:
 
 docker build -t my-nodejs-app .
@@ -25,7 +27,7 @@ And then you can put your files in public in the host and it will be served from
 
   ``http://127.0.0.1:8888/test.html``
 
-For using as daemon with React Create App, expose port 3000:
+For using as daemon with React Create App (https://github.com/facebookincubator/create-react-app), expose port 3000:
 
   ``docker run --network=zinibu -it -d --rm -p 3000:3000 --name node1 -v "$PWD":/usr/src/app -w /usr/src/app my-nodejs-app``
   ``docker exec -it node1 /bin/bash``
@@ -33,6 +35,25 @@ For using as daemon with React Create App, expose port 3000:
 And then browse to:
 
   ``http://127.0.0.1:3000/``
+
+But the problem with that is that the current directory ($PWD) is created and owned by the root user and I prefer to create the directory myself. If your host user has the same uid as the one used by the node user created by the container (1000) then you can create a host directory first and the user permissions should match when mapping the volume. Then just run your container like this:
+
+  ``mkdir app2`
+  ``docker run --network=zinibu -it -d --rm -p 3001:3000 --name node2 -v ~/mydocker/node-tests/app2:/usr/src/app -w /usr/src/app my-nodejs-app``
+
+This assumes your host will use port 3001 to map to port 3000 on the container.
+
+Now you can ssh into the container and install create-react-app as root:
+
+  ``docker exec -it node2 /bin/bash``
+  ``npm install -g create-react-app``
+
+And then su to the node user to make sure the permissions match the host user. Remember, this assumes your uid between host and container match:
+
+  ``su node``
+  ``create-react-app my-app``
+  ``cd my-app/``
+  ``npm start``
 
 
 Some npm commands
