@@ -55,6 +55,8 @@ And then su to the node user to make sure the permissions match the host user. R
   ``cd my-app/``
   ``npm start``
 
+Check original Dockerfile if you need to tweak user details.
+
 
 Some npm commands
 ==================================
