@@ -1,5 +1,5 @@
 import React from 'react';
 import { formatPrice } from './extra';
 
-formatPrice(422);
-console.log('test again with webpack2');
+formatPrice(1233);
+console.log('FROM ATOM again with webpack2');

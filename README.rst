@@ -77,6 +77,12 @@ And check all versions available:
   ``npm show babel-preset-react@* version``
 
 
+Webpack 2 and React
+==================================
+
+Using custom-webpack2 directory and node4 container.
+
+
 Some npm commands
 ==================================
 
