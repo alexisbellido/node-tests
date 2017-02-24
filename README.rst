@@ -63,6 +63,12 @@ And then su to the node user to make sure the permissions match the host user. R
 
 Check original Dockerfile if you need to tweak user details.
 
+To create your custom Webpack configuration
+
+  ``mkdir custom-webpack`
+  ``docker run --network=zinibu -it -d -p 3002:3000 --hostname=node3 --name node3 -v ~/mydocker/node-tests/custom-webpack:/usr/src/app -w /usr/src/app alexisbellido/node:7.6.0``
+  ``docker exec -it node3 /bin/bash``
+
 
 Some npm commands
 ==================================
