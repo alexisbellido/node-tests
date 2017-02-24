@@ -69,6 +69,13 @@ To create your custom Webpack configuration
   ``docker run --network=zinibu -it -d -p 3002:3000 --hostname=node3 --name node3 -v ~/mydocker/node-tests/custom-webpack:/usr/src/app -w /usr/src/app alexisbellido/node:7.6.0``
   ``docker exec -it node3 /bin/bash``
 
+Check latest version available via npm:
+
+  ``npm show babel-preset-es2015 version``
+
+And check all versions available:
+  ``npm show babel-preset-react@* version``
+
 
 Some npm commands
 ==================================
