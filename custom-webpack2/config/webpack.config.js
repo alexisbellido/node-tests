@@ -40,6 +40,12 @@ module.exports = {
 								['react']
 							]
 						}
+					},
+					{
+						loader: 'eslint-loader',
+						options: {
+							configFile: path.join(__dirname, '.eslintrc')
+						}
 					}
 				]
 			},
@@ -48,15 +54,17 @@ module.exports = {
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					// see https://github.com/webpack-contrib/sass-loader and
-					// https://github.com/webpack-contrib/extract-text-webpack-plugin for
-					// details about sass.
-					//resolve-url-loader may be chained before sass-loader if necessary
+					// https://github.com/webpack-contrib/extract-text-webpack-plugin
 					use: [
 						{
 							loader: 'css-loader',
 							options: {
 								sourceMap: true
 							}
+						},
+						// resolve-url-loader has to be chained before sass-loader
+						{
+							loader: 'resolve-url-loader'
 						},
 						{
 							loader: 'sass-loader',
@@ -69,15 +77,18 @@ module.exports = {
 					//use: ['css-loader', 'sass-loader']
 				})
 			},
+			// see https://github.com/webpack-contrib/file-loader and
+			// https://github.com/webpack-contrib/url-loader
 			{
-        test: /\.png$/,
+        test: /\.(jpg|png|gif)$/,
 				use: [
 					{
 						loader: 'url-loader',
 						options: {
-							mimetype: 'image/png',
-							name: 'img/[name].[ext]',
-							limit: 1
+							name: '[name].[ext]',
+							publicPath: '../img/',
+							outputPath: '../static/img/',
+							limit: 10000
 						}
 					}
 				]
