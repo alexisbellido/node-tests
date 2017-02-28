@@ -1,8 +1,6 @@
 Running Node.js and Javascript with Docker
 =============================================================================
 
-TODO: use --hostname
-
 This is based on the official Node.js image: https://hub.docker.com/_/node/
 
 Build from my Dockerfile:
