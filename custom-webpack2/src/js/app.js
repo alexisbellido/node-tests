@@ -10,10 +10,13 @@ console.log('FROM VIM again with webpack2');
 
 //render(<h1>mama</h1>, document.querySelector('#root'));
 
+const name = "Mono";
+
 ReactDOM.render(
 	<div>
 		<Header/>
-		<h1>Hello, world, again!</h1>
+		<h1>Hello {name}, again!</h1>
+		<h2>{`the name is ${name}`}</h2>
 	</div>,
 	document.getElementById('root')
 );
