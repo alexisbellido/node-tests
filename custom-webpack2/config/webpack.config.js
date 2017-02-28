@@ -22,7 +22,7 @@ module.exports = {
 	},
   output: {
     filename: 'js/[name].bundle.js',
-    publicPath: '../',
+    publicPath: '/',
 		//__dirname refers to the directory where this webpack.config.js lives
     path: path.resolve(__dirname, '../static')
   },
@@ -53,25 +53,38 @@ module.exports = {
 					//resolve-url-loader may be chained before sass-loader if necessary
 					use: [
 						{
-							loader: 'css-loader?sourceMap'
-							//options: {
-							//	sourceMap: true
-							//}
+							loader: 'css-loader',
+							options: {
+								sourceMap: true
+							}
 						},
 						{
-							loader: 'sass-loader?sourceMap'
-							//options: {
-							//	sourceMap: true
-							//}
+							loader: 'sass-loader',
+							options: {
+								sourceMap: true
+							}
 						}
 					]
-					// see: https://webpack.js.org/configuration/module/#rule-use
+					// alternative with strings, see: https://webpack.js.org/configuration/module/#rule-use
 					//use: ['css-loader', 'sass-loader']
 				})
+			},
+			{
+        test: /\.png$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							mimetype: 'image/png',
+							name: 'img/[name].[ext]',
+							limit: 1
+						}
+					}
+				]
 			}
 		]
 	},
-	devtool: 'source-map',
+	devtool: NODE_ENV === 'production' ? 'source-map' : 'eval-source-map',
 	plugins: [
     new ExtractTextPlugin('css/styles.css'),
 		new webpack.optimize.CommonsChunkPlugin({
@@ -84,3 +97,8 @@ module.exports = {
     })
 	]
 };
+
+// Extra control based on environment
+if ('production' === NODE_ENV) {
+} else {
+}

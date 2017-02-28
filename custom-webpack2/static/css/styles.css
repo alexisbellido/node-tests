@@ -1,6 +1,15 @@
-body {
-  background: purple; }
+h3 {
+  color: orange; }
 
 h1 {
-  font-size: 24px;
-  color: blue; }
+  font-size: 30px;
+  color: green; }
+
+body {
+  background: orange; }
+
+#root {
+  background: url(/img/pattern.png) yellow; }
+
+div {
+  padding: 15px; }

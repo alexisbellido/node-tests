@@ -1,8 +1,15 @@
+@import "partials/fonts";
+@import "partials/colors";
+
 body {
-	background: purple;
+	background: orange;
 }
 
-h1 {
-	font-size: 24px;
-	color: blue;
+#root {
+  background: url("../img/pattern.png") $color-bg-wrapper;
+
+}
+
+div {
+	padding: 15px;
 }
