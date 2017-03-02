@@ -17,7 +17,7 @@ ReactDOM.render(
 		<Header/>
 		<h1>Hello {name}, again!</h1>
 		<h2>{`the name is ${name}`}</h2>
-		<h2>{`Another name for ${name}`}</h2>
+		<h2>{`Again name for ${name}`}</h2>
 	</div>,
 	document.getElementById('root')
 );

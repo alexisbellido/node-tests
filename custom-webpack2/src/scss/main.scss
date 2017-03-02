@@ -2,12 +2,19 @@
 @import "partials/colors";
 
 body {
-  background: url("../img/pattern-2.jpg") $color-bg-wrapper;
+  background: pink;
 }
 
-#root {
-  background: url("../img/pattern.png") $color-bg-wrapper;
+.bg1 {
+  background: url("../img/pattern-2.jpg") $color-bg-wrapper;
+  color: red;
+  font-size: 28px;
+}
 
+.bg2 {
+  background: url("../img/pattern.png") $color-bg-wrapper;
+  color: orange;
+  font-size: 18px;
 }
 
 div {
