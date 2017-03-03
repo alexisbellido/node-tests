@@ -6,18 +6,32 @@ import Product from './Product';
 class ProductList extends React.Component {
     constructor (props) {
         super(props);
+        this.handleProductUpvote = this.handleProductUpvote.bind(this);
         this.state = {
             products: []
         };
     }
 
+    componentDidMount () {
+        this.setState({ products: sampleProducts });
+    }
+
     handleProductUpvote (productId) {
-        console.log(`${productId} was upvoted`);
+        const products = [...this.state.products];
+        products.map((product) => {
+            if (product.id === productId) {
+                product.votes += 1;
+            }
+            return product;
+        });
+        this.setState({ products });
     }
 
     render () {
-        // map with implicit return of Product components that is rendered inside ProductList below
-        const productComponents = sampleProducts.map((product) => (
+        // not using state
+        // const productComponents = sampleProducts.map((product) => (
+        // using state
+        const productComponents = this.state.products.map((product) => (
           <Product key={`product-${product.id}`}
             id={product.id}
             title={product.title}
