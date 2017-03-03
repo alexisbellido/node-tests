@@ -15,11 +15,11 @@ const name = "Mono";
 
 ReactDOM.render(
 	<div>
+		<ProductList />
 		<Header/>
 		<h1>Hello {name}, again!</h1>
 		<h2>{`the name is ${name}`}</h2>
 		<h2>{`Again name for ${name}`}</h2>
-		<ProductList />
 	</div>,
 	document.getElementById('root')
 );
