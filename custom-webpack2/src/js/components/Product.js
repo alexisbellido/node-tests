@@ -34,4 +34,12 @@ class Product extends React.Component {
     }
 }
 
+Product.propTypes = {
+    id: React.PropTypes.number.isRequired,
+    title: React.PropTypes.string,
+    votes: React.PropTypes.number,
+    description: React.PropTypes.string,
+    onVote: React.PropTypes.func
+};
+
 export default Product;
