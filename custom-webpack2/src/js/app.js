@@ -8,12 +8,18 @@ import ReactDOM from 'react-dom';
 
 import Header from './components/Header';
 import ProductList from './components/ProductList';
+import Clock from './components/Clock';
 // import NotFound from './components/NotFound';
 
 import { formatPrice } from './extra';
 
-formatPrice(1233);
-console.log('FROM VIM again with webpack2');
+function tick () {
+	 ReactDOM.render(
+		 <Clock date={new Date()}/>,
+		 document.getElementById('root')
+	 );
+}
+setInterval(tick, 1000);
 
 // const Root = () => {
 // 	 return (
@@ -21,7 +27,7 @@ console.log('FROM VIM again with webpack2');
 // 				<div>
 // 					<p><a href="/">products</a></p>
 // 					<p><a href="/head">head</a></p>
-// 					<Match exactly pattern="/" component={ProductList} />
+// 					<Match exactly pattern="/" component={Clock} />
 // 					<Match exactly pattern="/head" component={Header} />
 // 					<Miss component={NotFound} />
 // 				</div>
@@ -31,18 +37,19 @@ console.log('FROM VIM again with webpack2');
 
 // ReactDOM.render(<Root />, document.querySelector('#root'));
 
-const name = "Mono";
-//render(<h1>mama</h1>, document.querySelector('#root'));
-// if I imported just the render method
-ReactDOM.render(
-	<div>
-		<ProductList />
-		<Header/>
-		<h1>Hello {name}, again!</h1>
-		<h2>{`the name is ${name}`}</h2>
-		<h2>{`Again name for ${name}`}</h2>
-	</div>,
-	document.getElementById('root')
-);
+// const name = "Mono";
+// // if I imported just the render method
+// //render(<h1>mama</h1>, document.querySelector('#root'));
+// ReactDOM.render(
+// 	<div>
+// 		<Clock />
+// 		<ProductList />
+// 		<Header/>
+// 		<h1>Hello {name}, again!</h1>
+// 		<h2>{`the name is ${name}`}</h2>
+// 		<h3>{formatPrice(1233)}</h3>
+// 	</div>,
+// 	document.getElementById('root')
+// );
 
 // export default Root;
