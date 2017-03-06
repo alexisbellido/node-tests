@@ -7,15 +7,18 @@ import ReactDOM from 'react-dom';
 // import { BrowserRouter, Match, Miss } from 'react-router';
 
 import Header from './components/Header';
-import ProductList from './components/ProductList';
+// import ProductList from './components/ProductList';
 import Clock from './components/Clock';
 // import NotFound from './components/NotFound';
 
-import { formatPrice } from './extra';
+// import { formatPrice } from './extra';
 
 function tick () {
 	 ReactDOM.render(
-		 <Clock date={new Date()}/>,
+		 <div>
+			 <Header color="red" />
+			 <Clock date={new Date()}/>
+		 </div>,
 		 document.getElementById('root')
 	 );
 }
