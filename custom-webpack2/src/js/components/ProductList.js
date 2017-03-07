@@ -3,6 +3,8 @@ import React from 'react';
 import sampleProducts from '../seed';
 import Product from './Product';
 import Toggle from './Toggle';
+import NameForm from './NameForm';
+import UncontrolledForm from './UncontrolledForm';
 
 class ProductList extends React.Component {
     // Class components should always call the base constructor with props.
@@ -33,6 +35,7 @@ class ProductList extends React.Component {
         // not using state
         // const productComponents = sampleProducts.map((product) => (
         // using state
+        // I am building an array of Product elements to be rendered together below
         const productComponents = this.state.products.map((product) => (
           <Product key={`product-${product.id}`}
             id={product.id}
@@ -45,6 +48,8 @@ class ProductList extends React.Component {
             <div className="ui unstackable items">
               <h2>Product List from map in const</h2>
               <Toggle />
+              <NameForm />
+              <UncontrolledForm />
               {productComponents}
             </div>
         );
