@@ -1,6 +1,7 @@
 import React from 'react';
 
 class Product extends React.Component {
+    // Class components should always call the base constructor with props.
     constructor (props) {
         // any time we define our own custom component methods, we have to manually bind this to the component ourselves.
         super(props);

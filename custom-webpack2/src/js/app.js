@@ -7,22 +7,22 @@ import ReactDOM from 'react-dom';
 // import { BrowserRouter, Match, Miss } from 'react-router';
 
 import Header from './components/Header';
-// import ProductList from './components/ProductList';
+import ProductList from './components/ProductList';
 import Clock from './components/Clock';
 // import NotFound from './components/NotFound';
 
-// import { formatPrice } from './extra';
+import { formatPrice } from './extra';
 
-function tick () {
-	 ReactDOM.render(
-		 <div>
-			 <Header color="red" />
-			 <Clock date={new Date()}/>
-		 </div>,
-		 document.getElementById('root')
-	 );
-}
-setInterval(tick, 1000);
+// function tick () {
+// 	 ReactDOM.render(
+// 		 <div>
+// 			 <Header color="red" />
+// 			 <Clock />
+// 		 </div>,
+// 		 document.getElementById('root')
+// 	 );
+// }
+// setInterval(tick, 1000);
 
 // const Root = () => {
 // 	 return (
@@ -40,19 +40,19 @@ setInterval(tick, 1000);
 
 // ReactDOM.render(<Root />, document.querySelector('#root'));
 
-// const name = "Mono";
-// // if I imported just the render method
-// //render(<h1>mama</h1>, document.querySelector('#root'));
-// ReactDOM.render(
-// 	<div>
-// 		<Clock />
-// 		<ProductList />
-// 		<Header/>
-// 		<h1>Hello {name}, again!</h1>
-// 		<h2>{`the name is ${name}`}</h2>
-// 		<h3>{formatPrice(1233)}</h3>
-// 	</div>,
-// 	document.getElementById('root')
-// );
+const name = "Mono";
+// if I imported just the render method
+//render(<h1>mama</h1>, document.querySelector('#root'));
+ReactDOM.render(
+	<div>
+		<Clock />
+		<ProductList />
+		<Header/>
+		<h1>Hello {name}, again!</h1>
+		<h2>{`the name is ${name}`}</h2>
+		<h3>{formatPrice(1233)}</h3>
+	</div>,
+	document.getElementById('root')
+);
 
 // export default Root;

@@ -2,8 +2,10 @@ import React from 'react';
 
 import sampleProducts from '../seed';
 import Product from './Product';
+import Toggle from './Toggle';
 
 class ProductList extends React.Component {
+    // Class components should always call the base constructor with props.
     constructor (props) {
         super(props);
         this.handleProductUpvote = this.handleProductUpvote.bind(this);
@@ -42,6 +44,7 @@ class ProductList extends React.Component {
         return (
             <div className="ui unstackable items">
               <h2>Product List from map in const</h2>
+              <Toggle />
               {productComponents}
             </div>
         );
