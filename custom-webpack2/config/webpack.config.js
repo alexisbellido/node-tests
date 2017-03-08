@@ -111,8 +111,9 @@ module.exports = {
 };
 
 // Extra control based on environment
+// -p from webpack cli is equivalent to passing --optimize-minimize --define process.env.NODE_ENV="production"
+// and --optimize-minimize uses UglifyJsPlugin, so there's no need to run it again
 if (NODE_ENV === 'production') {
-  // something to do on production
 } else {
   // something to do on development
 }
