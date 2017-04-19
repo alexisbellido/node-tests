@@ -111,18 +111,22 @@ And check all versions available:
 
 
 Webpack 2 and React
-==================================
+---------------------------------------
 
 Using custom-webpack2 directory and node4 container.
 
 
 Some npm commands
-==================================
+---------------------------------------
 
-If you are only interested in the packages installed globally without the full TREE then:
+If you are only interested in the packages installed globally without the full tree then:
 
-  ``npm -g ls --depth=0``
+.. code-block:: bash
+
+  $ npm -g ls --depth=0
 
 or locally:
 
-  ``npm ls --depth=0``
+.. code-block:: bash
+
+  $ npm ls --depth=0
