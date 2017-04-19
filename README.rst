@@ -7,6 +7,10 @@ Build from my Dockerfile:
 
   ``docker build -t alexisbellido/node:7.6.0 .``
 
+Create a network to use for your containers.
+
+  ``docker network create -d bridge zinibu``
+
 Go to Node.js console:
 
   ``docker run --network=zinibu -it --rm --hostname=node1 --name node1 -v "$PWD":/usr/src/app -w /usr/src/app alexisbellido/node:7.6.0``
