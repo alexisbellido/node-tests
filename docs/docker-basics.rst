@@ -8,14 +8,19 @@ Use a small Docker image.
   $ docker run -it --rm node:10.11-alpine /bin/ash
   $ docker run -it --rm node:10.11-alpine node -v
 
-I can run a temporary NodeJS container that mounts a volume from a running service, the one used by Nginx in a running Docker Swarm service, and run npm commands inside that container. It doesn't have to be a part of the service and will be removed (--rm) after its job it's done.
+Bind current directory so I can edit from host. Note the bind target and work directory are /home/node, which already exist in the image.
 
 .. code-block:: bash
 
-  # Get names of existing volumes. For this example choose service-name_static.
-  $ docker volume ls
-  $ docker run -it --rm --mount type=volume,source=service-name_static,target=/root/project/static -w /root/project/static node:10.11-alpine /bin/ash
-  $ docker run -it --rm --mount type=volume,source=service-name_static,target=/root/project/static -w /root/project/static node:10.11-alpine npm help
+  $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node node:10.11-alpine /bin/ash
+
+Note that creating via docker run, as when using npm init to generate package.json or when compiling, will result in files owned by root on the host so better use the id command on the host to get current user and group and pass them via --user to the container.
+.. code-block:: bash
+
+  $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node --user $(id -u):$(id -g) node:10.11-alpine /bin/as
+  $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node --user $(id -u):$(id -g) node:10.11-alpine npm init
+
+=================
 
 TODO
 
