@@ -2,8 +2,6 @@ Creating a React App From Scratch
 
 See `details <https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658>`_.
 
-
-
 .. code-block:: bash
 
   $ cd react-test
@@ -22,3 +20,21 @@ See `details <https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c6
   $ npm install react@16.5.2 react-dom@16.5.2
   # optional
   $ npm install react-hot-loader@4.3.11
+
+I can run this from inside the container using npx to execute the local webpack package.
+
+.. code-block:: bash
+
+  # npx webpack --mode development --watch
+
+You can also run the same from scripts package.json.
+
+.. code-block:: bash
+
+  # npm run start
+
+Finally, the same can  be run from the host.
+
+.. code-block:: bash
+
+  $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node node:10.11-alpine npm run start
