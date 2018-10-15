@@ -2,6 +2,7 @@
 node_modules
 .npm
 .npmrc
+**./.config
 npm-debug.log
 .ash_history
 dist
