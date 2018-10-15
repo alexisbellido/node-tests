@@ -9,9 +9,7 @@ Some tests for this repository use an Nginx web server. See for example `<../com
 
   $ docker stack deploy -c compose/react-test.yml react-test
 
-Now set up a static directory to work with that web server. To make it easier to match the service running the web server use the same name. For example, the react-test service created above would work with the static/react-test/static directory. The extra directory with the name of the service is used in the same way Django recommends for separating app's static directories.
-
-Start the Node.js container to bind the static directory and be able to edit from host. Note the bind target and work directory are /home/node, which already exist in the image.
+Now set up a directory to work with that web server, change to it and start a Node.js container to be able to edit files in that directory from the host. Note the bind target and work directory are /home/node, which already exist in the image.
 
 .. code-block:: bash
 

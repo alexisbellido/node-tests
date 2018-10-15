@@ -11,8 +11,8 @@ services:
     volumes:
       # use bind to replace mount the source directory of the host on the container for development
       - type: bind
-        source: ../static/react-test/static
-        target: /usr/share/nginx/html/static
+        source: ../react-test
+        target: /usr/share/nginx/html/react-test
       # - type: volume
       #   source: static
       #   target: /usr/share/nginx/html/static
