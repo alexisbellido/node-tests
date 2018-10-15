@@ -1,6 +1,8 @@
 Docker Basics
 ======================================================================================
 
+This is being used to run `React from scratch <../react-test/README.rst>`_.
+
 Use a small Alpina-based `Node.js Docker image <https://hub.docker.com/_/node/>`_ to start. Note this image uses musl libc instead of glibc so certain software might run into issues.
 
 Some tests for this repository use an Nginx web server. See for example `<../compose/react-test.yml>`_, which is started as a `Docker Swarm service <https://docs.docker.com/engine/swarm/stack-deploy/>`_ for easier configuration with the following:
