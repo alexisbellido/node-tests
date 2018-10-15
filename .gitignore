@@ -1,6 +1,7 @@
 *.sw[op]
 node_modules
 .npm
+.npmrc
 npm-debug.log
 .ash_history
 dist
