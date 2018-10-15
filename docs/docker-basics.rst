@@ -1,49 +1,36 @@
 Docker Basics
 ======================================================================================
 
-Use a small Docker image.
+Use a small Alpina-based `Node.js Docker image <https://hub.docker.com/_/node/>`_ to start. Note this image uses musl libc instead of glibc so certain software might run into issues.
+
+Some tests for this repository use an Nginx web server. See for example `<../compose/react-test.yml>`_, which is started as a `Docker Swarm service <https://docs.docker.com/engine/swarm/stack-deploy/>`_ for easier configuration with the following:
 
 .. code-block:: bash
 
-  $ docker run -it --rm node:10.11-alpine /bin/ash
-  $ docker run -it --rm node:10.11-alpine node -v
+  $ docker stack deploy -c compose/react-test.yml react-test
 
-Bind current directory so I can edit from host. Note the bind target and work directory are /home/node, which already exist in the image.
+Now set up a static directory to work with that web server. To make it easier to match the service running the web server use the same name. For example, the react-test service created above would work with the static/react-test/static directory. The extra directory with the name of the service is used in the same way Django recommends for separating app's static directories.
+
+Start the Node.js container to bind the static directory and be able to edit from host. Note the bind target and work directory are /home/node, which already exist in the image.
 
 .. code-block:: bash
 
-  $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node node:10.11-alpine /bin/ash
-
-Note that creating via docker run, as when using npm init to generate package.json or when compiling, will result in files owned by root on the host so better use the id command on the host to get current user and group and pass them via --user to the container.
-.. code-block:: bash
-
-  $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node --user $(id -u):$(id -g) node:10.11-alpine /bin/as
+  $ cd static/react-test/static
+  $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node --user $(id -u):$(id -g) node:10.11-alpine /bin/ash
   $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node --user $(id -u):$(id -g) node:10.11-alpine npm init
+
+Note that creating files via docker run, as when using npm init or building with webpack, may result in files owned by root on the host so it's better to use the id command on the host to pass the current user and group via --user to the Node.js container.
 
 =================
 
 TODO
 
-for development the web service, which is Nginx, could use type bind instead of volume, so from 
+Use what's below to complete what's above
 
-- type: volume
-  source: static
-  target: /usr/share/nginx/public/static
-
-to something like
-
-- type: bind
-  source: ../django/project/static
-  target: /usr/share/nginx/public/static
-
-and then
-
-.. code-block:: bash
-
-  $ docker run -it --rm --mount type=bind,source=/path/to/static/on/host,target=/root/project/static -w /root/project/static node:10.11-alpine npm run watch
+for development the web service, which is Nginx, could use type bind instead of volume
 
 once the code is built a new image can be created and used for production
-also, once web service is used with a volume instead of a bind the code from static could copied with docker cp from host to container, hence to the volume 
+also, once web service is used with a volume instead of a bind the code from static could copied with docker cp from host to container, hence to the volume
 but at the end everything should be in the image and that should be used on production
 
 ===

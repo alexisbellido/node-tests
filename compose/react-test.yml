@@ -1,0 +1,20 @@
+version: "3.6"
+services:
+  web:
+    image: nginx:1.15.0
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "33340:80"
+    volumes:
+      # use bind to replace mount the source directory of the host on the container for development
+      - type: bind
+        source: ../static/react-test/static
+        target: /usr/share/nginx/html/static
+      # - type: volume
+      #   source: static
+      #   target: /usr/share/nginx/html/static
+volumes:
+  static:
