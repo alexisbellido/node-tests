@@ -15,7 +15,7 @@ Now set up a directory to work with that web server, change to it and start a No
 
 .. code-block:: bash
 
-  $ cd static/react-test/static
+  $ cd react-test
   $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node --user $(id -u):$(id -g) node:10.11-alpine /bin/ash
   $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node --user $(id -u):$(id -g) node:10.11-alpine npm init
 
