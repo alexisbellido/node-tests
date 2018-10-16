@@ -11,6 +11,11 @@ module.exports = {
       './src/css/style.css'
     ]
   },
+  output: {
+    path: path.resolve(__dirname, "dist/"),
+    publicPath: "../dist/",
+    filename: "[name].js"
+  },
   module: {
     rules: [
       {
@@ -25,11 +30,6 @@ module.exports = {
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
-  output: {
-    path: path.resolve(__dirname, "dist/"),
-    publicPath: "../dist/",
-    filename: "[name].js"
-  },
   plugins: [
     new HtmlWebpackPlugin({
       inject: false,
