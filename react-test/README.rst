@@ -1,4 +1,4 @@
-Creating a React App From Scratch
+Creating a React App From Scratch With Webpack 4
 
 See `details <https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658>`_.
 
@@ -38,3 +38,5 @@ Finally, the same can  be run from the host.
 .. code-block:: bash
 
   $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node node:10.11-alpine npm run start
+
+`HtmlWebpackPlugin <https://webpack.js.org/plugins/html-webpack-plugin/>`_ uses `<public/template.html>`_ to generate the HTML with the links to Javascript and CSS using lodash syntax. The inject option is set to false to avoid inserting the Javascript automatically and hash is true for cache busting. This could be a Django template in other directory.
