@@ -15,3 +15,5 @@ Read webpack 4 docs and use znbmain to get some ideas for the following:
   - https://webpack.js.org/loaders/postcss-loader/
 
 ===
+
+Once webpack 4 setup is ready and understood go back to React tasks
