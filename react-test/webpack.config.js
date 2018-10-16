@@ -4,16 +4,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    main: "./src/index.js"
+    // Passing an array of file paths to the entry property creates a multi-main entry
+    // so there's no need to import CSS from Javascript
+    main: [
+      './src/index.js',
+      './src/css/style.css'
+    ]
   },
-  mode: "development",
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
-        options: { presets: ["@babel/env"] }
+        loader: "babel-loader"
       },
       {
         test: /\.css$/,

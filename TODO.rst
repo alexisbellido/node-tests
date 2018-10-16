@@ -8,11 +8,13 @@ Read webpack 4 docs and use znbmain to get some ideas for the following:
 
   - https://webpack.js.org/loaders/sass-loader/ and https://webpack.js.org/plugins/mini-css-extract-plugin/
 
-  - file-load for files/bg images
+  - file-loader or url-loader for files/bg images
 
   - eslint-loader
 
-  - https://webpack.js.org/loaders/postcss-loader/
+  - https://webpack.js.org/loaders/postcss-loader/ for autoprefixer
+
+  - what about sourceMap for dev
 
 ===
 
