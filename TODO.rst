@@ -8,8 +8,6 @@ Read webpack 4 docs and use znbmain to get some ideas for the following:
 
   - file-loader or url-loader for files/bg images, especially with sass
 
-  - check why change to scss not working with npm run start when js is changed first, wbepack hash md5
-
   - eslint-loader
 
   - https://webpack.js.org/loaders/postcss-loader/ for autoprefixer

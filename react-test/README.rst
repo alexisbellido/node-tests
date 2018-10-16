@@ -40,3 +40,11 @@ Finally, the same can  be run from the host.
   $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node node:10.11-alpine npm run start
 
 `HtmlWebpackPlugin <https://webpack.js.org/plugins/html-webpack-plugin/>`_ uses `<public/template.html>`_ to generate the HTML with the links to Javascript and CSS using lodash syntax. The inject option is set to false to avoid inserting the Javascript automatically and hash is true for cache busting. This could be a Django template in other directory.
+
+Issues
+---------------------
+
+CleanWebpackPlugin with watch true sometimes doesn't recreate CSS when using MiniCssExtractPlugin
+
+Troubleshooting
+---------------------
