@@ -6,9 +6,9 @@ use `<docsdocker-basics.rst>`_ for notes and run basic NodeJS and npm stuff with
 
 Read webpack 4 docs and use znbmain to get some ideas for the following:
 
-  - https://webpack.js.org/loaders/sass-loader/ and https://webpack.js.org/plugins/mini-css-extract-plugin/
+  - file-loader or url-loader for files/bg images, especially with sass
 
-  - file-loader or url-loader for files/bg images
+  - check why change to scss not working with npm run start when js is changed first, wbepack hash md5
 
   - eslint-loader
 

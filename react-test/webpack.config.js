@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
@@ -9,18 +10,13 @@ module.exports = {
     // so there's no need to import CSS from Javascript
     main: [
       './src/index.js',
-      './src/css/style.css'
+      './src/scss/style.scss'
     ]
   },
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "../dist/",
     filename: "[name].js"
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
   },
   module: {
     rules: [
@@ -30,10 +26,11 @@ module.exports = {
         loader: "babel-loader"
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
-          "style-loader",
-          "css-loader"
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader"
         ]
       }
     ]
@@ -49,8 +46,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,
-      template: 'public/template.html',
-      filename: '../public/index.html'
+      template: "public/template.html",
+      filename: "../public/index.html"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css"
     })
   ]
 };
