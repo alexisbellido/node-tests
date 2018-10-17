@@ -35,7 +35,33 @@ var config = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader"
+        // for more details on how to write rules read the following
+        // https://webpack.js.org/configuration/module/#useentry
+        // https://webpack.js.org/configuration/module/#rule-use
+        // and here some examples
+        // just a string for loader
+        // loader: "babel-loader"
+        // an object for use
+        // use: {
+        //   loader: 'babel-loader'
+        // }
+        // a list with names of loaders
+        // use: [
+        //   'babel-loader',
+        //   'eslint-loader',
+        // ]
+        // a list of loader objects including options
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'eslint-loader',
+            options: {
+
+            }
+          },
+        ]
       },
       {
         test: /\.scss$/,
