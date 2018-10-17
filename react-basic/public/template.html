@@ -1,0 +1,32 @@
+<!-- sourced from https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Template for Webpack 4 and HtmlWebpackPlugin</title>
+  <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+  <% } %>
+</head>
+
+<body>
+
+  <div class="content">
+    <h1>Based on template and created by HtmlWebpackPlugin</h1>
+    <p>See <a href="index-manual.html">index-manual.html</a> for a manual version.</p>
+
+    <p class="download">Download</p>
+    <p class="browse">Browse</p>
+
+    <div id="root"></div>
+  </div>
+
+  <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+  <% } %>
+
+</body>
+
+</html>
