@@ -1,5 +1,9 @@
 Creating a React App From Scratch With Webpack 4
 
+Use this URL when using Nginx as described in `<../docs/docker-basics.rst>`_:
+
+http://localhost:33340/react-test/public/index.html
+
 See `details <https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658>`_.
 
 .. code-block:: bash
@@ -39,7 +43,7 @@ Finally, the same can  be run from the host.
 
   $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node node:10.11-alpine npm run start
 
-`HtmlWebpackPlugin <https://webpack.js.org/plugins/html-webpack-plugin/>`_ uses `<public/template.html>`_ to generate the HTML with the links to Javascript and CSS using lodash syntax. The inject option is set to false to avoid inserting the Javascript automatically and hash is true for cache busting. This could be a Django template in other directory.
+This example uses multiple instances of `HtmlWebpackPlugin <https://webpack.js.org/plugins/html-webpack-plugin/>`_ with templates from `<public/template.html>`_  and `<public/template-footer.html>`_ to generate the HTML with the links to Javascript and CSS using lodash syntax. The inject option is set to false to avoid inserting the Javascript automatically and hash is true for cache busting. This can be used with Django templates.
 
 Issues
 ---------------------
