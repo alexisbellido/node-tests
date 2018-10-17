@@ -1,15 +1,7 @@
 Running Node.js and Javascript with Docker
 =============================================================================
 
-This is based on the official Node.js image: https://hub.docker.com/_/node/
-
-Build from my Dockerfile:
-
-.. code-block:: bash
-
-  docker build -t alexisbellido/node:7.6.0 .
-
-Create a network to use for your containers.
+Create a network to use for your containers (or better use a compose file as done for Webpack 4 in the react-test directory).
 
 .. code-block:: bash
 
@@ -109,12 +101,16 @@ And check all versions available:
 
   npm show babel-preset-react@* version
 
+Webpack 4 and React
+---------------------------------------
+
+See `<react-test/README.html>`_.
+
 
 Webpack 2 and React
 ---------------------------------------
 
 Using custom-webpack2 directory and node4 container.
-
 
 Some npm commands
 ---------------------------------------

@@ -2,7 +2,7 @@ Creating a React App From Scratch With Webpack 4
 
 Use this URL when using Nginx as described in `<../docs/docker-basics.rst>`_:
 
-http://localhost:33340/react-test/public/index.html
+Browse http://localhost:33340/react-test/public/index.html (try http://127.0.0.1:33340/react-test/public/index.html or a host name pointing to the correct IP if localhost doesn't work)
 
 See `details <https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658>`_.
 
