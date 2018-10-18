@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React from "react";
 
 // 1
 // ReactDOM.render(element, document.getElementById('root'));
@@ -118,20 +118,26 @@ class Clock extends React.Component {
   }
   
   render() {
-    return (
-      <div>
+    const isLoggedIn = this.props.isLoggedIn;
+    if (isLoggedIn) {
+      return (
+        <div>
+          <h1>No Clock because you are logged in</h1>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+        <hr />
         <h1>Clock component here</h1>
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
         <h3>Count is {this.state.count}</h3>
         <Welcome number={this.state.count} />
-      </div>
-    )
+        <hr />
+        </div>
+      )
+    }
   }
 }
-
-// ReactDOM.render(
-//   <Clock />,
-//   document.getElementById('root')
-// );
 
 export default Clock;

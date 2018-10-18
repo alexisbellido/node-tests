@@ -2,6 +2,8 @@ Creating a React App From Scratch With Webpack 4
 
 Use this directory for tests. Keep react-basic as the initial, working configuration.
 
+Some examples, such as the Clock component, follow the `main concepts guide <https://reactjs.org/docs/hello-world.html>`_.
+
 Use this URL when using Nginx as described in `<../docs/docker-basics.rst>`_:
 
 Browse http://localhost:33340/react-test/public/index.html (try http://127.0.0.1:33340/react-test/public/index.html or a host name pointing to the correct IP if localhost doesn't work)
