@@ -16,14 +16,8 @@ import ReactDOM from "react-dom";
 //   document.getElementById("root")
 // );
 
-import NameForm from "./NameForm.js";
+import ProductList from "./ProductList.js";
 ReactDOM.render(
-  <NameForm />,
+  <ProductList />,
   document.getElementById("root")
 );
-
-
-
-
-
-

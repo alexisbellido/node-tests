@@ -8,4 +8,10 @@ See `<docs/docker-basics.rst>`_ for notes and run basic NodeJS and npm commands 
 
 ===
 
-Once webpack 4 setup is ready and understood go back to React tasks
+build basic ProductList based on Thinking in React
+
+https://www.taniarascia.com/getting-started-with-react/ in react-getting-started directory
+
+Move on to https://reactjs.org/tutorial/tutorial.html ?
+
+Wes Bos course
