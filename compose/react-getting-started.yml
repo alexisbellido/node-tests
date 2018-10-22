@@ -7,12 +7,12 @@ services:
       restart_policy:
         condition: on-failure
     ports:
-      - "33340:80"
+      - "33341:80"
     volumes:
       # use bind to replace mount the source directory of the host on the container for development
       - type: bind
         source: ../react-getting-started
-        target: /usr/share/nginx/html/react-getting-started
+        target: /usr/share/nginx/html
       # - type: volume
       #   source: static
       #   target: /usr/share/nginx/html/static
