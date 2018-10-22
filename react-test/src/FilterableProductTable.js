@@ -8,7 +8,7 @@ function SimpleList(props) {
   // should I use toString()?
   // <li key={product.id.toString()}>{product.name}</li>
   const simpleList = products.map((product) =>
-    <li key={product.id}>{product.name}</li>
+    <li key={product.id}>{product.name} at {product.price}</li>
   );
   return (
     <ul>
@@ -24,47 +24,112 @@ function SimpleList(props) {
 // // The JSON.stringify() method converts a JavaScript value to a JSON string
 // console.log(JSON.stringify(obj));
 
-class ProductTable extends React.Component {
-  render() {
-    return (
-      <div className="product-table">
-        <h1>ProductTable</h1>
-        {this.props.children}
-        <ProductCategoryRow />
-        <ProductRow />
-      </div>
-    )
-  }
-}
+// class ProductTable extends React.Component {
+//   render() {
+//     return (
+//       <div className="product-table">
+//         <h1>ProductTable</h1>
+//         <ul>
+//           {this.props.products.map((product) =>
+//             <li key={product.id}>{product.name} at {product.price}</li>
+//           )}
+//         </ul>
+//         {this.props.children}
+//         <ProductCategoryRow />
+//         <ProductRow />
+//       </div>
+//     )
+//   }
+// }
+
+// class ProductCategoryRow extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         ProductCategoryRow
+//       </div>
+//     )
+//   }
+// }
+
+// class ProductRow extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         ProductRow
+//       </div>
+//     )
+//   }
+// }
 
 class ProductCategoryRow extends React.Component {
   render() {
+    const category = this.props.category;
     return (
-      <div>
-        ProductCategoryRow
-      </div>
-    )
+      <tr>
+        <th colSpan="2">
+          {category}
+        </th>
+      </tr>
+    );
   }
 }
 
 class ProductRow extends React.Component {
   render() {
+    const product = this.props.product;
+    const name = product.stocked ?
+      product.name :
+      <span style={{color: 'red'}}>
+        {product.name}
+      </span>;
+
     return (
-      <div>
-        ProductRow
-      </div>
-    )
+      <tr>
+        <td>{name}</td>
+        <td>{product.price}</td>
+      </tr>
+    );
   }
 }
 
-const PRODUCTS = [
-  {id: 1, category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
-  {id: 2, category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
-  {id: 3, category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
-  {id: 4, category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
-  {id: 5, category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
-  {id: 6, category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
-];
+class ProductTable extends React.Component {
+  render() {
+    const rows = [];
+    let lastCategory = null;
+
+    this.props.products.forEach((product) => {
+      // this assumes products are sorted and grouped by category, if not, the
+      // category headers will be repeated. See T-Shirt in Sporting Goods
+      if (product.category !== lastCategory) {
+        rows.push(
+          <ProductCategoryRow
+            category={product.category}
+            key={product.category} />
+        );
+      }
+      // key should better be product.id
+      rows.push(
+        <ProductRow
+          product={product}
+          key={product.name} />
+      );
+      lastCategory = product.category;
+    });
+
+    return (
+      <table className="product-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    );
+  }
+}
 
 class FilterableProductTable extends React.Component {
   render() {
@@ -72,10 +137,9 @@ class FilterableProductTable extends React.Component {
       <div className="filterable-product-table">
         <h1>FilterableProductTable</h1>
         <SearchBar />
-        <ProductTable>
+        <ProductTable products={this.props.products}>
           <h2>something inside ProductTable</h2>
         </ProductTable>
-        <SimpleList products={PRODUCTS} />
       </div>
     )
   }
