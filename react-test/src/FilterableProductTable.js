@@ -95,12 +95,27 @@ class ProductRow extends React.Component {
 
 class ProductTable extends React.Component {
   render() {
+    const filterText = this.props.filterText;
+    const inStockOnly = this.props.inStockOnly;
+
     const rows = [];
     let lastCategory = null;
 
     this.props.products.forEach((product) => {
+
+      // if current product doesn't contain filterText
+      if (product.name.indexOf(filterText) === -1) {
+        return;
+      }
+
+      // if current product not in stock
+      if (inStockOnly && !product.stocked) {
+        return;
+      }
+
       // this assumes products are sorted and grouped by category, if not, the
       // category headers will be repeated. See T-Shirt in Sporting Goods
+      // there are also some issues repeating the category when using passing filterText
       if (product.category !== lastCategory) {
         rows.push(
           <ProductCategoryRow
@@ -118,27 +133,63 @@ class ProductTable extends React.Component {
     });
 
     return (
-      <table className="product-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
+      <div>
+        <h2>ProductTable</h2>
+        <table className="product-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
+        {this.props.children}
+      </div>
     );
   }
 }
 
 class FilterableProductTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterText: '',
+      inStockOnly: false
+    };
+
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.handleInStockChange = this.handleInStockChange.bind(this);
+  }
+
+  handleFilterTextChange(filterText) {
+    this.setState({
+      filterText: filterText
+    });
+  }
+
+  handleInStockChange(inStockOnly) {
+    this.setState({
+      inStockOnly: inStockOnly
+    })
+  }
+
   render() {
     return (
       <div className="filterable-product-table">
         <h1>FilterableProductTable</h1>
-        <SearchBar />
-        <ProductTable products={this.props.products}>
-          <h2>something inside ProductTable</h2>
+        <SearchBar
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+          onFilterTextChange={this.handleFilterTextChange}
+          onInStockChange={this.handleInStockChange}
+        />
+        <ProductTable
+          products={this.props.products}
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+        >
+          <p>something inside ProductTable (this.props.children)</p>
         </ProductTable>
       </div>
     )
