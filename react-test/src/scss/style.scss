@@ -33,4 +33,16 @@ body {
     }
 
   }
+
+  .filterable-product-table {
+    border: 1px solid green;
+    padding: 10px;
+    .search-bar,
+    .product-table {
+      border: 2px solid pink;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+  }
+
 }

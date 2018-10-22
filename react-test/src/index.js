@@ -16,8 +16,8 @@ import ReactDOM from "react-dom";
 //   document.getElementById("root")
 // );
 
-import ProductList from "./ProductList.js";
+import FilterableProductTable from "./FilterableProductTable.js";
 ReactDOM.render(
-  <ProductList />,
+  <FilterableProductTable />,
   document.getElementById("root")
 );
