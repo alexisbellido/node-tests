@@ -2,10 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Notes to run with NodeJS Docker container.
 
-### `cd react-tutorial/`
-### `docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node -p 3000:3000 node:10.11-alpine /bin/ash`
-
-### `npm start`
+  `cd react-tutorial/`
+  `docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node -p 3000:3000 node:10.11-alpine /bin/ash`
+  `npm start`
 
 Browse to `http://127.0.0.1:3000/`.
 
