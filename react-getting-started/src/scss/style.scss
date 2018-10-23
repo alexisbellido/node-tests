@@ -5,7 +5,7 @@ body {
   padding: 10px;
   background-color: $color-bg-body;
   background: url("../i/body-bg.jpg");
-  
+
   .content {
       background-color: $color-bg-wrapper;
       padding: 15px;
@@ -22,6 +22,11 @@ body {
   p {
     padding: 10px;
     padding-left: 35px;
+  }
+
+  .heading {
+    border: 1px solid $color-bg-body;
+    padding: 3px;
   }
 
 }
