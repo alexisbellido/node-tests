@@ -1,4 +1,7 @@
+// import default export from React so App needs to extend React.Component
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 import React from "react";
+import Table from './Table';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,11 +15,12 @@ class App extends React.Component {
 
   render() {
     const heading = <h2 className="heading">I am a heading</h2>;
-    return(
+    return (
       <div className="App">
         <h1>I am a React application</h1>
         {heading}
         {this.headingObject}
+        <Table />
       </div>
     );
   }
