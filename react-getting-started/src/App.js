@@ -36,7 +36,14 @@ class App extends React.Component {
     );
 
     this.removeCharacter = this.removeCharacter.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
+  }
+
+  handleSubmit(character) {
+    this.setState({
+      characters: [...this.state.characters, character]
+    });
   }
 
   removeCharacter(index) {
@@ -60,7 +67,7 @@ class App extends React.Component {
           characterData={this.state.characters}
           removeCharacter={this.removeCharacter}
         />
-        <Form />
+        <Form handleSubmit={this.handleSubmit} />
       </div>
     );
   }
