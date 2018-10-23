@@ -2,6 +2,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 import React from "react";
 import Table from './Table';
+import Form from './Form';
 
 class App extends React.Component {
   constructor(props) {
@@ -59,6 +60,7 @@ class App extends React.Component {
           characterData={this.state.characters}
           removeCharacter={this.removeCharacter}
         />
+        <Form />
       </div>
     );
   }
