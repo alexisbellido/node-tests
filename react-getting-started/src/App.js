@@ -6,13 +6,9 @@ import Table from './Table';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.headingObject = React.createElement(
-      'h3',
-      {className: 'heading'},
-      'Hi, I am a heading built with React.createElement'
-    );
 
-    this.characters = [
+    this.state = {
+      characters: [
         {
             'name': 'Charlie',
             'job': 'Janitor'
@@ -29,7 +25,27 @@ class App extends React.Component {
             'name': 'Dennis',
             'job': 'Bartender'
         }
-    ];
+      ]
+    };
+
+    this.headingObject = React.createElement(
+      'h3',
+      {className: 'heading'},
+      'Hi, I am a heading built with React.createElement'
+    );
+
+    this.removeCharacter = this.removeCharacter.bind(this);
+
+  }
+
+  removeCharacter(index) {
+      const { characters } = this.state;
+
+      this.setState({
+          characters: characters.filter((character, i) => {
+              return i !== index;
+          })
+      });
   }
 
   render() {
@@ -39,7 +55,10 @@ class App extends React.Component {
         <h1>I am a React application</h1>
         {heading}
         {this.headingObject}
-        <Table characterData={this.characters} />
+        <Table
+          characterData={this.state.characters}
+          removeCharacter={this.removeCharacter}
+        />
       </div>
     );
   }
