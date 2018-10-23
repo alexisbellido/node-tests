@@ -11,6 +11,25 @@ class App extends React.Component {
       {className: 'heading'},
       'Hi, I am a heading built with React.createElement'
     );
+
+    this.characters = [
+        {
+            'name': 'Charlie',
+            'job': 'Janitor'
+        },
+        {
+            'name': 'Mac',
+            'job': 'Bouncer'
+        },
+        {
+            'name': 'Dee',
+            'job': 'Aspring actress'
+        },
+        {
+            'name': 'Dennis',
+            'job': 'Bartender'
+        }
+    ];
   }
 
   render() {
@@ -20,7 +39,7 @@ class App extends React.Component {
         <h1>I am a React application</h1>
         {heading}
         {this.headingObject}
-        <Table />
+        <Table characterData={this.characters} />
       </div>
     );
   }

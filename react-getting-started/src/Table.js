@@ -13,27 +13,20 @@ const TableHeader = (props) => {
     );
 }
 
-const TableBody = () => {
+const TableBody = props => {
+  const rows = props.characterData.map((row, index) => {
     return (
-        <tbody>
-            <tr>
-                <td>Charlie</td>
-                <td>Janitor</td>
-            </tr>
-            <tr>
-                <td>Mac</td>
-                <td>Bouncer</td>
-            </tr>
-            <tr>
-                <td>Dee</td>
-                <td>Aspiring actress</td>
-            </tr>
-            <tr>
-                <td>Dennis</td>
-                <td>Bartender</td>
-            </tr>
-        </tbody>
-    );
+      <tr key={index}>
+        <td>{row.name}</td>
+        <td>{row.job}</td>
+      </tr>
+    )
+  });
+  return (
+      <tbody>
+        {rows}
+      </tbody>
+  );
 }
 
 class Table extends Component {
@@ -42,10 +35,14 @@ class Table extends Component {
   }
 
   render() {
+    // const characterData = this.props.characterData;
+    // destructuring assignment (ES6 property shorthand)
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+    const { characterData } = this.props;
     return (
       <table>
         <TableHeader message="hello" />
-        <TableBody />
+        <TableBody characterData={characterData} />
       </table>
     );
   }
