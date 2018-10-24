@@ -15,8 +15,3 @@ URL: http://127.0.0.1:33341/public/index.html
   $ cd react-getting-started/
   $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node node:10.11-alpine npm install
   $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node node:10.11-alpine npm run start
-
-TODO
-----------------------------------------------------------------
-
-Follow the tutorial

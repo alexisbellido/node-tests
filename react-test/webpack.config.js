@@ -16,125 +16,130 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // "build": "NODE_ENV=production webpack --mode production --config webpack.config.js --progress"
 // and get the value from process.NODE_ENV here
 
-var config = {
-  entry: {
-    // Passing an array of file paths to the entry property creates a multi-main entry
-    // so there's no need to import CSS from Javascript
-    main: [
-      './src/index.js',
-      './src/scss/style.scss'
-    ]
-  },
-  output: {
-    path: path.resolve(__dirname, "dist/"),
-    publicPath: "../dist/",
-    filename: "[name].js"
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        // for more details on how to write rules read the following
-        // https://webpack.js.org/configuration/module/#useentry
-        // https://webpack.js.org/configuration/module/#rule-use
-        // and here some examples
-        // just a string for loader
-        // loader: "babel-loader"
-        // an object for use
-        // use: {
-        //   loader: 'babel-loader'
-        // }
-        // a list with names of loaders
-        // use: [
-        //   'babel-loader',
-        //   'eslint-loader',
-        // ]
-        // a list of loader objects including options
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'eslint-loader',
-            options: {
-
-            }
-          },
-        ]
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader"
-        ]
-      },
-      {
-        test: /\.jpg$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              mimetype: 'image/jpg',
-              limit: 3000,
-              // file-loader receives the same options
-              // adding a rule for for file-loader may confuse webpack
-              fallback: 'file-loader',
-              name: '[name].[ext]',
-              outputPath: 'i/',
-              publicPath: '/react-test/dist/i'
-            }
-          }
-        ]
-      },
-      {
-        test: /\.png$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              mimetype: 'image/png',
-              limit: 3000,
-              // file-loader receives the same options
-              // adding a rule for for file-loader may confuse webpack
-              fallback: 'file-loader',
-              name: '[name].[ext]',
-              outputPath: 'i/',
-              publicPath: '/react-test/dist/i'
-            }
-          }
-        ]
-      }
-    ]
-  },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
-  plugins: [
-    new CleanWebpackPlugin(
-      ['dist']
-    ),
-    // using two instances HtmlWebpackPlugin to create two files from different templates
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: "public/template.html",
-      filename: "../public/index.html"
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: "public/template-footer.html",
-      filename: "../public/footer.html"
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css"
-    })
-  ]
-};
-
 module.exports = (env, argv) => {
   let production = argv.mode === 'production'
+
+  let config = {
+    entry: {
+      // Passing an array of file paths to the entry property creates a multi-main entry
+      // so there's no need to import CSS from Javascript
+      main: [
+        './src/index.js',
+        './src/scss/style.scss'
+      ]
+    },
+    output: {
+      path: path.resolve(__dirname, "dist/"),
+      publicPath: "../dist/",
+      filename: "[name].js"
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /(node_modules|bower_components)/,
+          // for more details on how to write rules read the following
+          // https://webpack.js.org/configuration/module/#useentry
+          // https://webpack.js.org/configuration/module/#rule-use
+          // and here some examples
+          // just a string for loader
+          // loader: "babel-loader"
+          // an object for use
+          // use: {
+          //   loader: 'babel-loader'
+          // }
+          // a list with names of loaders
+          // use: [
+          //   'babel-loader',
+          //   'eslint-loader',
+          // ]
+          // a list of loader objects including options
+          // disable eslint-loader for production to avoid npm ERR! code ELIFECYCLE and npm ERR! errno 2
+          use: production ? [
+            {
+              loader: 'babel-loader',
+            }
+          ] : [
+            {
+              loader: 'babel-loader',
+            },
+            {
+              loader: 'eslint-loader',
+              options: {
+              }
+            }
+          ]
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            "css-loader",
+            "sass-loader"
+          ]
+        },
+        {
+          test: /\.jpg$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                mimetype: 'image/jpg',
+                limit: 3000,
+                // file-loader receives the same options
+                // adding a rule for for file-loader may confuse webpack
+                fallback: 'file-loader',
+                name: '[name].[ext]',
+                outputPath: 'i/',
+                publicPath: '/react-test/dist/i'
+              }
+            }
+          ]
+        },
+        {
+          test: /\.png$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                mimetype: 'image/png',
+                limit: 3000,
+                // file-loader receives the same options
+                // adding a rule for for file-loader may confuse webpack
+                fallback: 'file-loader',
+                name: '[name].[ext]',
+                outputPath: 'i/',
+                publicPath: '/react-test/dist/i'
+              }
+            }
+          ]
+        }
+      ]
+    },
+    resolve: { extensions: ["*", ".js", ".jsx"] },
+    plugins: [
+      new CleanWebpackPlugin(
+        ['dist']
+      ),
+      // using two instances HtmlWebpackPlugin to create two files from different templates
+      new HtmlWebpackPlugin({
+        inject: false,
+        hash: true,
+        template: "public/template.html",
+        filename: "../public/index.html"
+      }),
+      new HtmlWebpackPlugin({
+        inject: false,
+        hash: true,
+        template: "public/template-footer.html",
+        filename: "../public/footer.html"
+      }),
+      new MiniCssExtractPlugin({
+        filename: "[name].css"
+      })
+    ]
+  };
+
   if (production) {
     config.optimization = {
       minimizer: [

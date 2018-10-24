@@ -3,6 +3,8 @@
 import React from "react";
 import Table from './Table';
 import Form from './Form';
+import ApiFetch from './ApiFetch';
+import ApiAxios from './ApiAxios';
 
 class App extends React.Component {
   constructor(props) {
@@ -58,9 +60,12 @@ class App extends React.Component {
 
   render() {
     const heading = <h2 className="heading">I am a heading</h2>;
+    const REACT_VERSION = React.version;
     return (
       <div className="App">
-        <h1>I am a React application</h1>
+        <h1>I am a React application running version {REACT_VERSION}</h1>
+        <ApiFetch />
+        <ApiAxios />
         {heading}
         {this.headingObject}
         <Table
