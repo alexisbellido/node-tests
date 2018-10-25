@@ -25,21 +25,8 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.(js|jsx)$/,
-          exclude: /(node_modules|bower_components)/,
-          use: production ? [
-            {
-              loader: 'babel-loader',
-            }
-          ] : [
-            {
-              loader: 'babel-loader',
-            },
-            {
-              loader: 'eslint-loader',
-              options: {
-              }
-            }
-          ]
+          exclude: /node_modules/,
+          loader: 'babel-loader',
         },
         {
           test: /\.scss$/,
@@ -111,6 +98,24 @@ module.exports = (env, argv) => {
         new OptimizeCSSAssetsPlugin({})
       ]
     };
+  } else {
+    // eslint used only on development 
+    config.module.rules.push(
+      {
+        enforce: 'pre', // this is a preloader so it runs before babel-loader
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'eslint-loader',
+            options: {
+              emitError: true,
+              emitWarning: true,
+            }
+          }
+        ]
+      }
+    )
   }
   return config;
 };
