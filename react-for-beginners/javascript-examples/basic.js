@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 let sum = (a, b) => a + b;
 
 console.log(`Sum is ${sum(2,4)}\n===`);
@@ -19,3 +21,11 @@ console.log(7.0.toString(2));
 
 // and probably better with parentheses
 console.log((7).toString(2));
+
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+
