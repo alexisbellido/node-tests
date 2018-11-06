@@ -3,6 +3,57 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import StorePicker from "./components/StorePicker";
 
+class Secret extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '...'
+    }
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+
+  onButtonClick(event) {
+    // don't submit the form
+    event.preventDefault();
+
+    // https://reactjs.org/docs/react-component.html#setstate
+
+    // simple form, passing state object
+    // this.setState({
+    //   name: 'Toby'
+    // });
+
+    // passing an updater function with access to previous state and props
+    // this is the recommended way to use setState
+    // parenthesize the body of function to return an object literal expression
+    this.setState((prevState, props) => ({
+      name: 'Bill'
+    }));
+
+    // passing an updater function with access to previous state and props
+    // and a callback once the updater has run
+    // docs recommend using componentDidUpdate() instead of this callback
+    // this.setState(
+    //   (prevState, props) => ({
+    //     name: 'Bill'
+    //   }),
+    //   () => {
+    //     console.log('setState complete');
+    //   }
+    // );
+
+  }
+
+  render() {
+    return (
+      <form>
+        <h1>My name is {this.state.name}</h1>
+        <button onClick={this.onButtonClick}>Reveal the secret</button>
+      </form>
+    );
+  }
+}
+
 class Post extends Component {
   // no for constructor with super(props) to access this.props
   // but if there's a constructor super(props) must be there
@@ -12,13 +63,17 @@ class Post extends Component {
 
   render() {
     return (
-      <h4>This is from Post component for name {this.props.name} and color {this.props.color}</h4>
+      <div className="main-content">
+        <h4>This is from Post component for name {this.props.name} and color {this.props.color}</h4>
+        <StorePicker />
+        <Secret />
+      </div>
     );
   }
 }
 
-// TODO PropTypes.oneOf and PropTypes.string.isRequired not working with
-// current eslint configuration
+// TODO PropTypes.oneOf and PropTypes.string.isRequired won't be detected by eslint
+// but they are visible from browser console
 Post.propTypes = {
   color: PropTypes.oneOf(["orange", "yellow"]).isRequired,
   name: PropTypes.string.isRequired,
@@ -34,7 +89,6 @@ const root = React.createElement(
       "a link"
   ),
   <Post color="green" />,
-  <StorePicker />
 );
 
 ReactDOM.render(root, document.getElementById("root"));
