@@ -55,6 +55,14 @@ class Secret extends Component {
 }
 
 class Post extends Component {
+
+  // need @babel/plugin-proposal-class-properties, see .babelrc, to use
+  // experimental syntax 'classProperties'
+  // may be better to define static properties outside the class as shown below
+  static defaultProps = {
+    name: "Luis"
+  };
+
   // no for constructor with super(props) to access this.props
   // but if there's a constructor super(props) must be there
   constructor(props) {
@@ -72,6 +80,10 @@ class Post extends Component {
   }
 }
 
+// note how static properties of the class Post, Post.propTypes and Post.defaultProps,
+// can be defined outside the class, as shown below, or inside the class, as show above
+// for defaultProps
+
 // TODO PropTypes.oneOf and PropTypes.string.isRequired won't be detected by eslint
 // but they are visible from browser console
 Post.propTypes = {
@@ -79,6 +91,19 @@ Post.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
+// Post.defaultProps = {
+//   name: "Pepe"
+// };
+
+function Greeting(props) {
+  return <strong> Hello {props.for}! </strong>;
+}
+
+Greeting.defaultProps = {
+  for: 'friend'
+};
+
+// using React.createElement for demonstration purposes; prefer JSX
 const root = React.createElement(
   "h1",
   {"className": "testing"},
@@ -88,7 +113,10 @@ const root = React.createElement(
       {href: "http://google.com", target: "_blank"},
       "a link"
   ),
+  <Greeting />,
+  <Greeting for="Toby" />,
   <Post color="green" />,
+  <Post name="Chito" color="orange" />
 );
 
 ReactDOM.render(root, document.getElementById("root"));
