@@ -7,10 +7,12 @@ class Secret extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '...'
+      name: '...',
+      content: 'fill this'
     }
     this.onButtonClick = this.onButtonClick.bind(this);
     this.createError = this.createError.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -67,6 +69,20 @@ class Secret extends Component {
 
   }
 
+  handleChange(e) {
+    let value = e.target.value;
+    // get e.target.value outside setState when passing a function to setState
+
+    // That is because of React doing event polling - all the event fields get nullified after the callback is done, so you observe them as nulls in the asynchronous setState callback.
+
+    // See https://reactjs.org/docs/events.html#event-pooling
+    // The SyntheticEvent is pooled. This means that the SyntheticEvent object will be reused and all properties will be nullified after the event callback has been invoked. This is for performance reasons. As such, you cannot access the event in an asynchronous way.
+    
+    this.setState((prevState, props) => ({
+      content: value
+    }));
+  }
+
   createError(event) {
     event.preventDefault();
     this.setState((prevState, props) => ({
@@ -89,6 +105,13 @@ class Secret extends Component {
         <p>
           <button onClick={this.createError}>Create error</button>
         </p>
+        <p>
+          <input type="text" name="name" value={this.state.content} onChange={this.handleChange} />
+        </p>
+        <textarea
+          value={this.state.content}
+          onChange={this.handleChange}
+        />
       </form>
     );
   }
