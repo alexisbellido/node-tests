@@ -8,9 +8,12 @@ class Secret extends Component {
     super(props);
     this.state = {
       name: '...',
-      content: 'fill this'
+      userMessage: '',
+      content: '',
+      valid: false
     }
     this.onButtonClick = this.onButtonClick.bind(this);
+    this.submitForm = this.submitForm.bind(this);
     this.createError = this.createError.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -35,6 +38,23 @@ class Secret extends Component {
     console.log("ChildComponent: componentDidUpdate");
     console.log("previousProps:", previousProps);
     console.log("previousState:", previousState);
+  }
+
+  submitForm(event) {
+    // don't submit the form
+    event.preventDefault();
+    console.log('submitForm');
+    let userMessage;
+    if (!this.state.valid) {
+      userMessage = 'Please enter valid message';
+    } else {
+      userMessage = ''
+    }
+
+    this.setState((prevState, props) => ({
+      userMessage
+    }));
+
   }
 
   onButtonClick(event) {
@@ -70,16 +90,23 @@ class Secret extends Component {
   }
 
   handleChange(e) {
-    let value = e.target.value;
+    let content = e.target.value;
     // get e.target.value outside setState when passing a function to setState
 
     // That is because of React doing event polling - all the event fields get nullified after the callback is done, so you observe them as nulls in the asynchronous setState callback.
 
     // See https://reactjs.org/docs/events.html#event-pooling
     // The SyntheticEvent is pooled. This means that the SyntheticEvent object will be reused and all properties will be nullified after the event callback has been invoked. This is for performance reasons. As such, you cannot access the event in an asynchronous way.
-    
+
+    // this.setState((prevState, props) => ({
+    //   content: content
+    // }));
+
+    // using shorthand property name for object literal
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015
     this.setState((prevState, props) => ({
-      content: value
+      content,
+      valid: content.length <= 5
     }));
   }
 
@@ -98,13 +125,8 @@ class Secret extends Component {
     return (
       <form>
         <h1>My name is {this.state.name}</h1>
+        <h2>user message: {this.state.userMessage}</h2>
         <p>Message passed from parent: {this.props.message}</p>
-        <p>
-          <button onClick={this.onButtonClick}>Reveal the secret</button>
-        </p>
-        <p>
-          <button onClick={this.createError}>Create error</button>
-        </p>
         <p>
           <input type="text" name="name" value={this.state.content} onChange={this.handleChange} />
         </p>
@@ -112,6 +134,9 @@ class Secret extends Component {
           value={this.state.content}
           onChange={this.handleChange}
         />
+        <p><button onClick={this.onButtonClick}>Reveal the secret</button></p>
+        <p><button onClick={this.createError}>Create error</button></p>
+        <p><button onClick={this.submitForm}>Submit Form</button></p>
       </form>
     );
   }
