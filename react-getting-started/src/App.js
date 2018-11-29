@@ -79,3 +79,7 @@ class App extends React.Component {
 }
 
 export default App;
+
+// export can also go right before class creation
+// export default class App extends React.Component {
+// }
