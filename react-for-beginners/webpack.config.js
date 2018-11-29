@@ -7,10 +7,12 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env, argv) => {
+  // see notes about mode variable below
   let production = argv.mode === 'production'
 
   let config = {
     entry: {
+      // processes main javascript and sass
       main: [
         './src/index.js',
         './src/scss/style.scss'
@@ -20,6 +22,11 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, "dist/"),
       publicPath: "../dist/",
       filename: "[name].js"
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
     },
     module: {
       rules: [
@@ -87,19 +94,29 @@ module.exports = (env, argv) => {
     ]
   };
 
+  // If you want to change the behavior according to the mode variable inside the webpack.config.js, you have to use a function,
+  // an arrow function with arguments (env, argv) and return a configuration object
+  // https://webpack.js.org/concepts/mode/
+
+  // You can also use DefinePlugin to expose process.env.NODE_ENV but in my tests it caused a bigger build
+
+  // Alternatively you can pass an environment variable from the script in package.json, like this:
+  // "build": "NODE_ENV=production webpack --mode production --config webpack.config.js --progress"
+  // and get the value from process.NODE_ENV here
+
   if (production) {
-    config.optimization = {
-      minimizer: [
-        new UglifyJsPlugin({
-          cache: true,
-          parallel: true,
-          sourceMap: true
-        }),
-        new OptimizeCSSAssetsPlugin({})
-      ]
-    };
+    // adding like this because of config.optimization.splitChunks, see above
+    // https://webpack.js.org/plugins/split-chunks-plugin/
+    config.optimization.minimizer = [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ];
   } else {
-    // eslint used only on development 
+    // eslint used only on development
     config.module.rules.push(
       {
         enforce: 'pre', // this is a preloader so it runs before babel-loader
