@@ -9,7 +9,11 @@ services:
     ports:
       - "33342:80"
     volumes:
-      # use bind to replace mount the source directory of the host on the container for development
+      # use bind to replace Nginx configuration
+      - type: bind
+        source: ../nginx/conf.d/react-for-beginners.conf
+        target: /etc/nginx/conf.d/default.conf
+      # use bind to mount the source directory of the host on the container for development
       - type: bind
         source: ../react-for-beginners
         target: /usr/share/nginx/html

@@ -1,6 +1,6 @@
 import React from "react";
-// or just get {Compomnent}
-// import React, {Component} from "react";
+// or just get { Compomnent }
+// import React, { Component } from "react";
 
 class StorePicker extends React.Component {
   render() {
