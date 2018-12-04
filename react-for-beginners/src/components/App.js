@@ -60,6 +60,19 @@ class App extends React.Component {
     }));
   };
 
+  updateFish = (key, updatedFish) => {
+    const fishes = { ...this.state.fishes };
+    fishes[key] = updatedFish;
+    this.setState({fishes});
+  };
+
+  deleteFish = (key) => {
+    const fishes = { ...this.state.fishes };
+    // needs to set to null to sync with Firebase
+    fishes[key] = null;
+    this.setState({fishes});
+  };
+
   loadSampleFishes = () => {
     // better use form that accepts function
     this.setState((prevState, props) => ({
@@ -75,6 +88,13 @@ class App extends React.Component {
     this.setState((prevState, props) => ({ order }));
   };
 
+  removeFromOrder = key => {
+    // takes a copy from the state to avoid mutation in place
+    const order = {...this.state.order};
+    delete order[key];
+    this.setState((prevState, props) => ({ order }));
+  };
+
   render() {
     return (
       <div className="catch-of-the-day">
@@ -87,9 +107,12 @@ class App extends React.Component {
         <Order
           fishes={this.state.fishes}
           order={this.state.order}
+          removeFromOrder={this.removeFromOrder}
         />
         <Inventory
           addFish={this.addFish}
+          updateFish={this.updateFish}
+          deleteFish={this.deleteFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={this.state.fishes}
         />
