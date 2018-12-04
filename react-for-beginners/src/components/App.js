@@ -6,7 +6,7 @@ import Fish from "./Fish";
 import sampleFishes from "./sample-fishes"
 
 class App extends React.Component {
-  // alternative to using super method; see StorePicker
+  // alternative to using a constructor with a super method creating this.state
   state = {
     fishes: {},
     order: {}
@@ -15,6 +15,7 @@ class App extends React.Component {
   // using an arrow function as a property of the component instead of a
   // custom method to avoid the bind in constructor to have access to this
   addFish = fish => {
+    // takes a copy from the state to avoid mutation in place
     const fishes = {...this.state.fishes};
     fishes[`fish${Date.now()}`] = fish;
 
@@ -37,13 +38,21 @@ class App extends React.Component {
     }));
   };
 
+  addToOrder = (key) => {
+    // takes a copy from the state to avoid mutation in place
+    const order = {...this.state.order};
+    order[key] = order[key] + 1 || 1;
+    // shorthand notation when object key and assigned value share the same name
+    this.setState((prevState, props) => ({ order }));
+  };
+
   render() {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagline="All The Fresh Fish" />
           <ul className="fishes">
-            {Object.keys(this.state.fishes).map(key => <Fish key={key} details={this.state.fishes[key]} />)}
+            {Object.keys(this.state.fishes).map(key => <Fish key={key} index={key} details={this.state.fishes[key]} addToOrder={this.addToOrder} />)}
           </ul>
         </div>
         <Order />

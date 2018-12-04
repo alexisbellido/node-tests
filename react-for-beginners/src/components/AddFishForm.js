@@ -9,6 +9,9 @@ class AddFishForm extends React.Component {
   descRef = React.createRef();
   imageRef = React.createRef();
 
+  // this uses refs to manage form fields
+  // see react-getting-started/src/Form.js to use state instead
+
   // using arrow function as a property of the component instead of a
   // custom method to avoid the bind in constructor to have access to this
   // see more details in StorePicker
