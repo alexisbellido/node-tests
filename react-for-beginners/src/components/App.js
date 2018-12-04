@@ -4,6 +4,7 @@ import Inventory from "./Inventory";
 import Order from "./Order";
 import Fish from "./Fish";
 import sampleFishes from "./sample-fishes"
+import base from "../base";
 
 class App extends React.Component {
   // alternative to using a constructor with a super method creating this.state
@@ -11,6 +12,34 @@ class App extends React.Component {
     fishes: {},
     order: {}
   };
+
+  componentDidMount() {
+    // the storeId is provided by router
+    const { params } = this.props.match;
+
+    // first reinstate our localStorage
+    const localStorageRef = localStorage.getItem(params.storeId);
+    if (localStorageRef) {
+      this.setState({ order: JSON.parse(localStorageRef) });
+    }
+
+    this.ref = base.syncState(`${params.storeId}/fishes`, {
+      context: this,
+      state: "fishes"
+    });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(
+      this.props.match.params.storeId,
+      JSON.stringify(this.state.order)
+    );
+  }
+
+  componentWillUnmount() {
+    // using this.ref, the reference to the Firebase database to removing when unmounting component
+    base.removeBinding(this.ref);
+  }
 
   // using an arrow function as a property of the component instead of a
   // custom method to avoid the bind in constructor to have access to this
@@ -55,10 +84,14 @@ class App extends React.Component {
             {Object.keys(this.state.fishes).map(key => <Fish key={key} index={key} details={this.state.fishes[key]} addToOrder={this.addToOrder} />)}
           </ul>
         </div>
-        <Order />
+        <Order
+          fishes={this.state.fishes}
+          order={this.state.order}
+        />
         <Inventory
           addFish={this.addFish}
           loadSampleFishes={this.loadSampleFishes}
+          fishes={this.state.fishes}
         />
       </div>
     );
