@@ -26,6 +26,7 @@ You can also get to the container's command line and run npm
   $ cd react-for-beginners/
   $ docker run -it --rm --mount type=bind,source=$(pwd),target=/home/node -w /home/node node:10.11-alpine /bin/ash
 
+https://github.com/wesbos/React-For-Beginners-Starter-Files
 
 Separate app and vendor entries
 ==================================================
