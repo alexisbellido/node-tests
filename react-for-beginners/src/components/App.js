@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Header from "./Header";
 import Inventory from "./Inventory";
 import Order from "./Order";
@@ -52,12 +53,12 @@ class App extends React.Component {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015
 
     // passing just an object
-    // this.setState({fishes});
+    this.setState({fishes});
 
     // better use form that accepts function
-    this.setState((prevState, props) => ({
-      fishes
-    }));
+    // this.setState((prevState, props) => ({
+    //   fishes
+    // }));
   };
 
   updateFish = (key, updatedFish) => {
@@ -99,7 +100,7 @@ class App extends React.Component {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
-          <Header tagline="All The Fresh Fish" />
+          <Header tagline={"All The Fresh Fish"} />
           <ul className="fishes">
             {Object.keys(this.state.fishes).map(key => <Fish key={key} index={key} details={this.state.fishes[key]} addToOrder={this.addToOrder} />)}
           </ul>
@@ -120,5 +121,9 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  match: PropTypes.object
+};
 
 export default App;

@@ -1,5 +1,5 @@
 import React from "react";
-// import { formatPrice } from "../helpers";
+import PropTypes from "prop-types";
 
 class EditFishForm extends React.Component {
   handleChange = (event) => {
@@ -28,5 +28,12 @@ class EditFishForm extends React.Component {
     );
   }
 }
+
+EditFishForm.propTypes = {
+  deleteFish: PropTypes.func,
+  updateFish: PropTypes.func,
+  index: PropTypes.string,
+  fish: PropTypes.object
+};
 
 export default EditFishForm;

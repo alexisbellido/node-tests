@@ -1,6 +1,7 @@
 import React from "react";
-// or just get { Compomnent }
+// or just get { Component }
 // import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { getFunName } from "../helpers";
 
 class StorePicker extends React.Component {
@@ -45,5 +46,9 @@ class StorePicker extends React.Component {
   }
 
 }
+
+StorePicker.propTypes = {
+  history: PropTypes.object
+};
 
 export default StorePicker;

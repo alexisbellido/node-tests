@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 
 // when no path used then it's usually a Node module
