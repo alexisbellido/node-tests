@@ -8,7 +8,9 @@ From the root of this repository.
 
 Use this URL when using Nginx as described in `<../docs/docker-basics.rst>`_:
 
-URL: http://127.0.0.1:33342/public/index.html
+URL: http://127.0.0.1:33342/home
+
+And use a NodeJS container to run npm commands.
 
 .. code-block:: bash
 

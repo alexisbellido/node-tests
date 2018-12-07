@@ -21,7 +21,7 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, "dist/"),
       publicPath: "../dist/",
-      filename: "[name].js"
+      filename: "js/[name].js"
     },
     optimization: {
       splitChunks: {
@@ -89,7 +89,7 @@ module.exports = (env, argv) => {
         filename: "../public/index.html"
       }),
       new MiniCssExtractPlugin({
-        filename: "[name].css"
+        filename: "css/[name].css"
       })
     ]
   };
