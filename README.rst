@@ -100,6 +100,8 @@ And check all versions available:
 .. code-block:: bash
 
   npm show babel-preset-react@* version
+  npm show webpack@* version
+  npm show react@* version
 
 Webpack 4 and React
 ---------------------------------------

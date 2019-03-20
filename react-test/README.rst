@@ -1,4 +1,5 @@
 Creating a React App From Scratch With Webpack 4
+============================================================================================
 
 Use this URL when using Nginx as described in `<../docs/docker-basics.rst>`_:
 
