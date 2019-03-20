@@ -104,7 +104,7 @@ And check all versions available:
 Webpack 4 and React
 ---------------------------------------
 
-See `<react-test/README.html>`_.
+See `<react-test/README.rst>`_.
 
 
 Webpack 2 and React
